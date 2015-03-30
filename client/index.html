@@ -1,0 +1,58 @@
+<head>
+  <title>CityBlocs</title>
+</head>
+
+<body>
+
+  <footer>
+    {{> nav}}
+  </footer>
+</body>
+
+<template name="nav">
+  <nav>
+    <ul>
+      <li><a href="/" class="nav-home">Home</a></li>
+      {{> cityList}}
+      <li><a href="/about" class="nav-about">About</a></li>
+    </ul>
+  </nav>
+</template>
+
+<template name="cityList">
+  <!--
+  <li>Cities
+    <ul>
+      <li>Calgary
+        <ul>
+          <li>old</li>
+          <li>new</li>
+        </ul>
+      </li>
+      <li>Edmonton
+        <ul>
+          <li>old</li>
+          <li>new</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  -->
+  <li>Cities
+    <ul>
+      {{#each cities}}
+        <li>{{name}}
+          {{> councilList}}
+        </li>
+      {{/each}}
+    </ul>
+  </li>
+</template>
+
+<template name="councilList">
+    <ul>
+      {{#each councils}}
+        <li>{{name}}: {{timeframe}}</li>
+      {{/each}}
+    </ul>
+</template>
