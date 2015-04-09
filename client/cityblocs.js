@@ -5,6 +5,8 @@ Accounts.ui.config({
 	passwordSignupFields: 'USERNAME_AND_EMAIL'
 });
 
+Template.registerHelper('AppName', 'CityBlocs');
+
 Template.cityList.helpers({
 	cities: function () {
 		return Cities.find({}, {sort: {name: 1}});

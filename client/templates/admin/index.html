@@ -1,0 +1,26 @@
+<template name="admin">
+	<head>
+		<title>{{AppName}} Admin</title>
+	</head>
+
+	<body>
+		<div class="container bs-docs-container">
+			{{#unless currentUser}}
+				<div class="row">
+					<div class="pull-right">
+						{{> loginButtons}}
+					</div>
+				</div>
+		  {{else}}
+				<div class="row">
+					<div class="pull-right">
+						{{> loginButtons}}
+					</div>
+					<h1>Hi, admin!</h1>
+
+					{{> editAbout}}
+				</div>
+			{{/unless}}
+		</div>
+	</body>
+</template>
