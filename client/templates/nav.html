@@ -15,9 +15,9 @@
               <li class="dropdown-header">Drag the circles around to reposition councillors, if the names end up overlapping or you want to position the blocs differently.</li>
             </ul>
           </li>
-          <li><a href="/contact" class="{{activeRoute '/contact' 'acac'}}">Contact</a></li>
-          <li><a href="/about" class="{{activeRoute '/about' 'active-nav'}}">About</a></li>
-					<li><a href="/admin"><span class="glyphicon glyphicon-cog"></span></a></li>
+          <li><a href="/contact" {{classIfActive '/contact' 'active-nav'}}>Contact</a></li>
+          <li><a href="/about" {{classIfActive '/about' 'active-nav'}}>About</a></li>
+					<li><a href="/admin" {{classIfActive '/admin' 'active-nav'}}><span class="glyphicon glyphicon-cog"></span></a></li>
         </ul>
       </div>
     </div>

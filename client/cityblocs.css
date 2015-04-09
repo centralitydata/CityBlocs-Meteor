@@ -6,8 +6,10 @@ body {
   background-color:#d3e4f1;
 }
 
-.navbar-inverse .navbar-nav > li > a .active-nav {
-  color: '#0ff';
+.navbar-inverse .navbar-nav > li > a.active-nav  {
+  color: #fff;
+  background-color: #444;
+  font-weight: bold;
 }
 
 .navbar-brand {

@@ -11,12 +11,12 @@ Template.cityList.helpers({
 	}
 });
 
-Template.registerHelper('activeRoute', function (name, class_name) {
-	var ret = '';
+Template.registerHelper('classIfActive', function (name, class_name) {
+	var ret = {};
 
 	if (Router.current()) {
 		var loc = Router.current().location.get().path;
-		if (loc === name) { ret = class_name; }
+		if (loc === name) { ret = {class: class_name}; }
 	}
 
 	return ret;
