@@ -4,12 +4,12 @@
 	</head>
 
 	<div class="container">
-		<h1>{{about_text.heading}}</h1>
+		<h1>{{#markdown}}{{about_text.heading}}{{/markdown}}</h1>
 		<div class="textpanel">
-			{{about_text.description}}
+			{{#markdown}}{{about_text.description}}{{/markdown}}
 		</div>
 		<div class="textpanel">
-			{{about_text.acknowledgements}}
+			{{#markdown}}{{about_text.acknowledgements}}{{/markdown}}
 		</div>
 
 		<div class="row legal-block">
