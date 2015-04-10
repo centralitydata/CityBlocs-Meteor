@@ -3,6 +3,36 @@
 	  <title>{{AppName}} - About</title>
 	</head>
 
-	<h1>About {{AppName}}</h1>
-	<p>Info goes here...</p>
+	<div class="container">
+		<h1>{{about_text.heading}}</h1>
+		<div class="textpanel">
+			{{about_text.description}}
+		</div>
+		<div class="textpanel">
+			{{about_text.acknowledgements}}
+		</div>
+
+		<div class="row legal-block">
+			<div class="col-md-2"></div>
+			<div class="col-md-8 text-center">
+				<p class="legal">
+					<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+						<img alt="Creative Commons License" style="border-width:0"
+								src="http://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png">
+					</a>
+					<br>
+					<span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">CityBlocs</span>
+					is licensed under a
+					<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+						Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License
+					</a>.
+					If you are interested in using these results in print, please contact us
+					and we can provide you with alternative forms, including graphics with
+					white backgrounds. We appreciate, but do not require, being notified of
+					any works derived from the content on this site.
+				</p>
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+	</div>
 </template>

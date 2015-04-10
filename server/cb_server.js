@@ -2,6 +2,6 @@ Meteor.publish('cities', function () {
 	return Cities.find();
 });
 
-Meteor.publish('about_text', function () {
-	return AboutText.find();
-})
+Meteor.publish('about_info', function () {
+	return AboutInfo.find();
+});
