@@ -1,11 +1,12 @@
 # CityBlocs with Meteor.js
 
-**This is currently non-functional, pre-alpha software**
+**This is non-functional, pre-alpha software**
 
 The existing site is live at [cityblocs.ca](http://www.cityblocs.ca/), though
-its source is not currently available. The goal of this project is to launch an
-open-source, reusable version that includes enhanced functionality over the
-relatively static content of the current site.
+its source is not public (and for good reason -- you wouldn't want to work with
+it!). The goal of this project is to launch an open-source, reusable version
+that includes enhanced functionality over the relatively static content of the
+current site.
 
 ## Quickstart ##
 
