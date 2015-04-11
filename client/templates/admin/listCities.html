@@ -11,12 +11,15 @@
 			<tbody>
 				{{#each cities}}
 					<tr>
-						<td>{{name}}</td>
+						<td><a href="/admin/editCity?id={{_id}}">{{name}}</a></td>
 						<td>{{councils.length}}</td>
 						<td><input type="checkbox" checked="{{hidden}}" class="toggle-hidden"></td>
 					</tr>
 				{{/each}}
 			</tbody>
 		</table>
+		<button class="add-city btn btn-primary pull-right" type="submit">
+			<span class="glyphicon glyphicon-plus"></span> New city
+		</button>
 	{{/adminSectionWrapper}}
 </template>

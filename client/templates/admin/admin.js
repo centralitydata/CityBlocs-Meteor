@@ -21,7 +21,7 @@ Template.admin_editAbout.helpers({
 
 
 /*
- * Helpers for admin/listCities.html
+ * Routines for admin/listCities.html
  */
 Template.admin_listCities.helpers({
 	cities: function () {
@@ -33,5 +33,22 @@ Template.admin_listCities.events({
 	'click .toggle-hidden': function () {
 		// Logically invert the hidden property
 		Meteor.call('hideCity', this._id, !this.hidden);
+	},
+	'click .add-city': function () {
+
+	}
+});
+
+
+/*
+ * Routines for admin/editCity.html
+ */
+Template.admin_editCity.events({
+	'submit .edit-city': function (e) {
+		var city = {
+			name: e.target.city_name.value,
+			hidden: e.target.city_hidden.value
+		};
+		Meteor.call('insertCity', city);
 	}
 });
