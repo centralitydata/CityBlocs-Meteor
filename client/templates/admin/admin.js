@@ -28,3 +28,10 @@ Template.admin_listCities.helpers({
 		return Cities.find({}, {sort: {name: 1}});
 	}
 });
+
+Template.admin_listCities.events({
+	'click .toggle-hidden': function () {
+		// Logically invert the hidden property
+		Meteor.call('hideCity', this._id, !this.hidden);
+	}
+});

@@ -30,8 +30,10 @@ Template.registerHelper('classIfActive', function (name, class_name) {
 	return ret;
 });
 
+
 /*
- *
+ * Title-case addition to String prototype, based on
+ *   http://stackoverflow.com/a/6475125/607408
  */
 String.prototype.toTitleCase = function() {
   var i, str, lowers, uppers, midcaps;
@@ -61,7 +63,7 @@ String.prototype.toTitleCase = function() {
 		);
 	}
 
-	// Preserve CityBlocs, and possibly other words with interior capitals
+	// Preserve CityBlocs, and other words with interior capitals
 	midcaps = [
 		{from: 'Cityblocs', to:'CityBlocs'},
 		{from: 'Mcivor', to:'McIvor'}
