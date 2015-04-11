@@ -1,0 +1,22 @@
+<template name="admin_listCities">
+	{{#adminSectionWrapper title="Bloc&rsquo;d cities"}}
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>City</th>
+					<th>Councils</th>
+					<th>Hidden</th>
+				</tr>
+			</thead>
+			<tbody>
+				{{#each cities}}
+					<tr>
+						<td>{{name}}</td>
+						<td>{{councils.length}}</td>
+						<td>TODO</td>
+					</tr>
+				{{/each}}
+			</tbody>
+		</table>
+	{{/adminSectionWrapper}}
+</template>

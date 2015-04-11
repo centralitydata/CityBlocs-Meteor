@@ -16,9 +16,9 @@
 					<div class="pull-right">
 						{{> loginButtons}}
 					</div>
-					<h1>Hi, admin!</h1>
-
-					{{> editAbout}}
+					<h1>Hi, Administrator {{currentUser.username.toTitleCase}}!</h1>
+					{{> admin_listCities}}
+					{{> admin_editAbout}}
 				</div>
 			{{/unless}}
 		</div>

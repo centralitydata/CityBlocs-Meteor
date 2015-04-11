@@ -1,4 +1,7 @@
-Template.editAbout.events({
+/*
+ * Helpers for admin/editAbout.html
+ */
+Template.admin_editAbout.events({
 	'submit #editAboutPage': function (e) {
 		var aboutInfo = {
 			heading: e.target['about-heading'].value,
@@ -10,8 +13,18 @@ Template.editAbout.events({
 	}
 });
 
-Template.editAbout.helpers({
+Template.admin_editAbout.helpers({
 	about_texts: function () {
 		return AboutInfo.findOne();
+	}
+});
+
+
+/*
+ * Helpers for admin/listCities.html
+ */
+Template.admin_listCities.helpers({
+	cities: function () {
+		return Cities.find({}, {sort: {name: 1}});
 	}
 });
