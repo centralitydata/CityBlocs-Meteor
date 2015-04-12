@@ -1,8 +1,8 @@
 <template name="councilMenu">
     <ul class="dropdown-menu">
-      {{#if councils.count}}
+      {{#if councils.length}}
         {{#each councils}}
-          <li><a href="#">{{name}}: {{timeframe}}</a></li>
+          <li><a href="#">{{name}}</a></li>
         {{/each}}
       {{else}}
         <li><a href="#">No councils yet!</a></li>

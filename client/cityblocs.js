@@ -104,3 +104,36 @@ String.prototype.toTitleCase = function() {
 
   return str;
 };
+
+
+/*
+ * This can build a set of cities and councils to test MongoDB queries
+ * against, while determining the best structure for the documents we
+ * want to store.
+ */
+
+makeTestData = function () {
+	var i, j, k;
+	var city;
+	for (i = 0; i < 5; i++) {
+		city = {
+			name: 'City ' + (i+1),
+			hidden: false,
+			councils: []
+		};
+		for (j = 0; j < 10; j++) {
+			city.councils.push({
+				name: 'Council ' + (i+1) + '.' + j,
+				hidden: false,
+				motions: []
+			});
+			for (k = 1; k < 28; k++) {
+				city.councils[j].motions.push({
+					name: 'Motion ' + (i+1) + '.' + j + '.' + k,
+					date: new Date(2015, 3, k)
+				});
+			}
+		}
+		Meteor.call('insertCity', city);
+	}
+};

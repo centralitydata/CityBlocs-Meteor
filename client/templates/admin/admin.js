@@ -73,7 +73,8 @@ Template.admin_editCity.events({
 				// There is no existing ID, so insert a new document
 				var city = {
 					name: name,
-					hidden: hidden
+					hidden: hidden,
+					councils: []
 				};
 				Meteor.call('insertCity', city);
 			}
