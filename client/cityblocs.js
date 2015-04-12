@@ -7,7 +7,7 @@ Accounts.ui.config({
 
 Template.registerHelper('AppName', 'CityBlocs');
 
-Template.cityList.helpers({
+Template.cityMenu.helpers({
 	cities: function () {
 		return Cities.find({}, {sort: {name: 1}});
 	}

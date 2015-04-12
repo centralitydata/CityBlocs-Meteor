@@ -1,0 +1,11 @@
+<template name="councilMenu">
+    <ul class="dropdown-menu">
+      {{#if councils.count}}
+        {{#each councils}}
+          <li><a href="#">{{name}}: {{timeframe}}</a></li>
+        {{/each}}
+      {{else}}
+        <li><a href="#">No councils yet!</a></li>
+      {{/if}}
+    </ul>
+</template>

@@ -1,3 +1,5 @@
+Cities._ensureIndex('name', {unique: 1});
+
 Meteor.publish('cities', function () {
 	// By default, only show cities that are not hidden
 	var selector = { hidden: {$ne: true} };

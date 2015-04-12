@@ -1,5 +1,5 @@
 /*
- * Helpers for admin/editAbout.html
+ * Routines for admin/editAbout.html
  */
 Template.admin_editAbout.events({
 	'submit #editAboutPage': function (e) {
@@ -21,7 +21,7 @@ Template.admin_editAbout.helpers({
 
 
 /*
- * Routines for admin/listCities.html
+ * Routines for admin/listCities.html, shown in main admin/index.html page
  */
 Template.admin_listCities.helpers({
 	cities: function () {
@@ -30,12 +30,12 @@ Template.admin_listCities.helpers({
 });
 
 Template.admin_listCities.events({
-	'click .toggle-hidden': function () {
+	'click .toggle-hidden': function (event) {
 		// Logically invert the hidden property
 		Meteor.call('hideCity', this._id, !this.hidden);
 	},
-	'click .add-city': function () {
-
+	'click .new-city': function (event) {
+		Router.go('/admin/editCity');
 	}
 });
 
@@ -44,11 +44,22 @@ Template.admin_listCities.events({
  * Routines for admin/editCity.html
  */
 Template.admin_editCity.events({
-	'submit .edit-city': function (e) {
-		var city = {
-			name: e.target.city_name.value,
-			hidden: e.target.city_hidden.value
-		};
-		Meteor.call('insertCity', city);
+	'submit .edit-city': function (event) {
+		event.preventDefault();
+
+		var nameTextbox = event.target.city_name;
+		var name = nameTextbox.value.trim();
+		if (name === '') {
+			$(nameTextbox).val(name);
+			$(nameTextbox).parent().addClass('has-error');
+		} else {
+			var city = {
+				name: name,
+				hidden: event.target.city_hidden.checked
+			};
+			Meteor.call('insertCity', city, function (error, result) {
+				Router.go('/admin');
+			});
+		}
 	}
 });
