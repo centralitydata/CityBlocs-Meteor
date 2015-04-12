@@ -26,3 +26,33 @@ We are currently using these Meteor packages:
   * markdown
   * meteor-platform
   * twbs:bootstrap
+
+----
+
+# Data structures #
+
+Each city is stored as a document of the form:
+
+    {
+      _id: 'unique ID',
+      name: 'City Name',
+      hidden: true/false,
+      councils: [ ... ]
+    }
+
+Within each city, each element in the array of councils has the form:
+
+    {
+      _id: 'unique ID',
+      name: 'Council Name',
+      hidden: true/false,
+      motions: [ ... ]
+    }
+
+Each motion of each council has the form:
+
+    {
+      _id: 'unique ID',
+      date: timestamp,
+      votes: [ ... ]
+    }

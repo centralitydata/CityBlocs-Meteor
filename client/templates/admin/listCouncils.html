@@ -1,0 +1,23 @@
+<template name="adminListCouncils">
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Council</th>
+				<th class="text-center">Motions</th>
+				<th class="text-center">Hidden</th>
+			</tr>
+		</thead>
+		<tbody>
+			{{#each council}}
+				<tr>
+					<td><a href="/admin/editCity/{{_id}}">{{name}}</a></td>
+					<td class="text-center">{{motions.length}}</td>
+					<td class="text-center"><input type="checkbox" checked="{{hidden}}" class="toggle-hidden"></td>
+				</tr>
+			{{/each}}
+		</tbody>
+	</table>
+	<button class="new-city btn btn-primary pull-right" type="submit">
+		<span class="glyphicon glyphicon-plus"></span> New council
+	</button>
+</template>
