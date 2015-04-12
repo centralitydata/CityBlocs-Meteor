@@ -4,16 +4,16 @@
 			<thead>
 				<tr>
 					<th>City</th>
-					<th>Councils</th>
-					<th>Hidden</th>
+					<th class="text-center">Councils</th>
+					<th class="text-center">Hidden</th>
 				</tr>
 			</thead>
 			<tbody>
 				{{#each cities}}
 					<tr>
-						<td><a href="/admin/editCity?id={{_id}}">{{name}}</a></td>
-						<td>{{councils.length}}</td>
-						<td><input type="checkbox" checked="{{hidden}}" class="toggle-hidden"></td>
+						<td><a href="/admin/editCity/{{_id}}">{{name}}</a></td>
+						<td class="text-center">{{councils.length}}</td>
+						<td class="text-center"><input type="checkbox" checked="{{hidden}}" class="toggle-hidden"></td>
 					</tr>
 				{{/each}}
 			</tbody>

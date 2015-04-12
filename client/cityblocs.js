@@ -1,3 +1,7 @@
+/***************************************************************************
+ * App-level config
+ */
+
 Meteor.subscribe('cities');
 Meteor.subscribe('about_info');
 
@@ -5,19 +9,17 @@ Accounts.ui.config({
 	passwordSignupFields: 'USERNAME_AND_EMAIL'
 });
 
+
+/***************************************************************************
+ * App-level 'constants'
+ */
+
 Template.registerHelper('AppName', 'CityBlocs');
 
-Template.cityMenu.helpers({
-	cities: function () {
-		return Cities.find({}, {sort: {name: 1}});
-	}
-});
 
-Template.about.helpers({
-	about_text: function () {
-		return AboutInfo.findOne();
-	}
-});
+/***************************************************************************
+ * App-level components
+ */
 
 Template.registerHelper('classIfActive', function (name, class_name) {
 	var ret = {};
@@ -30,6 +32,31 @@ Template.registerHelper('classIfActive', function (name, class_name) {
 	return ret;
 });
 
+
+/***************************************************************************
+ * Nav bar components
+ */
+
+Template.cityMenu.helpers({
+	cities: function () {
+		return Cities.find({}, {sort: {name: 1}});
+	},
+
+	classIfHidden: function () {
+		return this.hidden ? 'city-hidden' : '';
+	}
+});
+
+Template.about.helpers({
+	about_text: function () {
+		return AboutInfo.findOne();
+	}
+});
+
+
+/***************************************************************************
+ * Additional routines
+ */
 
 /*
  * Title-case addition to String prototype, based on

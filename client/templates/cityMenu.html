@@ -5,7 +5,7 @@
     </a>
     <ul class="dropdown-menu multi-level">
       {{#each cities}}
-        <li class="dropdown-submenu">
+        <li class="dropdown-submenu {{classIfHidden}}">
           <a href="#">{{name}}</a>
           {{> councilMenu}}
         </li>

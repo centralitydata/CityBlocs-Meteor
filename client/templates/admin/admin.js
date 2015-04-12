@@ -1,6 +1,7 @@
-/*
+/***************************************************************************
  * Routines for admin/editAbout.html
  */
+
 Template.admin_editAbout.events({
 	'submit #editAboutPage': function (e) {
 		var aboutInfo = {
@@ -20,9 +21,10 @@ Template.admin_editAbout.helpers({
 });
 
 
-/*
+/***************************************************************************
  * Routines for admin/listCities.html, shown in main admin/index.html page
  */
+
 Template.admin_listCities.helpers({
 	cities: function () {
 		return Cities.find({}, {sort: {name: 1}});
@@ -40,26 +42,43 @@ Template.admin_listCities.events({
 });
 
 
-/*
+/***************************************************************************
  * Routines for admin/editCity.html
  */
+
+Template.admin_editCity.helpers({
+
+});
+
 Template.admin_editCity.events({
 	'submit .edit-city': function (event) {
 		event.preventDefault();
 
 		var nameTextbox = event.target.city_name;
 		var name = nameTextbox.value.trim();
+		var hidden = event.target.city_hidden.checked;
+
 		if (name === '') {
 			$(nameTextbox).val(name);
 			$(nameTextbox).parent().addClass('has-error');
 		} else {
-			var city = {
-				name: name,
-				hidden: event.target.city_hidden.checked
-			};
-			Meteor.call('insertCity', city, function (error, result) {
-				Router.go('/admin');
-			});
+			if (this._id) {
+				// There is an existing ID, so update the current document
+				var updates = {
+					name: name,
+					hidden: hidden
+				};
+				Meteor.call('updateCity', this._id, updates);
+			} else {
+				// There is no existing ID, so insert a new document
+				var city = {
+					name: name,
+					hidden: hidden
+				};
+				Meteor.call('insertCity', city);
+			}
+
+			Router.go('/admin');
 		}
 	}
 });
