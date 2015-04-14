@@ -46,8 +46,11 @@ Template.admin_listCities.events({
  * Routines for admin/editCity.html
  */
 
-Template.admin_editCity.helpers({
-
+Template.adminListCouncils.helpers({
+	councils: function (city_id) {
+		//return Councils.find({'city_id': city_id}, {sort: {'timeframe.start': 1}});
+		return Councils.find({'city_id': city_id});
+	}
 });
 
 Template.admin_editCity.events({
