@@ -9,6 +9,18 @@ Meteor.publish('cities', function () {
 	return Cities.find(selector);
 });
 
+Meteor.publish('councils', function () {
+	var selector = { hidden: {$ne: true} };
+	if (this.userId) {
+		selector = {};
+	}
+	return Councils.find(selector);
+});
+
+Meteor.publish('motions', function () {
+	return Motions.find({});
+});
+
 Meteor.publish('about_info', function () {
 	return AboutInfo.find();
 });

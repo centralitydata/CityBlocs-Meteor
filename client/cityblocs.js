@@ -3,6 +3,8 @@
  */
 
 Meteor.subscribe('cities');
+Meteor.subscribe('councils');
+Meteor.subscribe('motions');
 Meteor.subscribe('about_info');
 
 Accounts.ui.config({
@@ -44,6 +46,12 @@ Template.cityMenu.helpers({
 
 	classIfHidden: function () {
 		return this.hidden ? 'city-hidden' : '';
+	}
+});
+
+Template.councilMenu.helpers({
+	councils: function (city_id) {
+		return Councils.find({'city_id': city_id}, {sort: {'timeframe.start': 1}});
 	}
 });
 
@@ -112,7 +120,7 @@ String.prototype.toTitleCase = function() {
  * want to store.
  */
 
-makeTestData = function () {
+makeTestDataArrays = function () {
 	var i, j, k;
 	var city;
 	for (i = 0; i < 5; i++) {
@@ -132,6 +140,33 @@ makeTestData = function () {
 					name: 'Motion ' + (i+1) + '.' + j + '.' + k,
 					date: new Date(2015, 3, k)
 				});
+			}
+		}
+		Meteor.call('insertCity', city);
+	}
+};
+
+makeTestDataObjects = function () {
+	var i, j, k;
+	var city;
+	var cname, mname;
+	for (i = 0; i < 5; i++) {
+		city = {
+			name: 'City ' + (i+1),
+			hidden: false,
+			councils: {}
+		};
+		for (j = 0; j < 10; j++) {
+			cname = 'Council ' + (i+1) + '-' + j;
+			city.councils[cname] = {
+				hidden: false,
+				motions: {}
+			};
+			for (k = 1; k < 28; k++) {
+				mname = 'Motion ' + (i+1) + '-' + j + '-' + k;
+				city.councils[cname].motions[mname] = {
+					date: new Date(2015, 3, k)
+				};
 			}
 		}
 		Meteor.call('insertCity', city);

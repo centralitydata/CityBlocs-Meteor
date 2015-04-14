@@ -1,11 +1,11 @@
 <template name="councilMenu">
     <ul class="dropdown-menu">
-      {{#if councils.length}}
-        {{#each councils}}
+      {{! #if councils.length}}
+        {{#each councils _id}}
           <li><a href="#">{{name}}</a></li>
         {{/each}}
-      {{else}}
-        <li><a href="#">No councils yet!</a></li>
-      {{/if}}
+      {{! else}}
+        <!--<li><a href="#">No councils yet!</a></li>-->
+      {{! /if}}
     </ul>
 </template>
