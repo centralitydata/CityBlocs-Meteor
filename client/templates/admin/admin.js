@@ -38,7 +38,7 @@ Template.adminListCities.helpers({
 Template.adminListCities.events({
 	'click .toggle-hidden': function (event) {
 		// Logically invert the hidden property
-		Meteor.call('hideCity', this._id, !this.hidden);
+		Meteor.call('hideEntity', 'city', this._id, !this.hidden);
 	},
 	'click .new-city': function (event) {
 		Router.go('/admin/editCity');
@@ -50,14 +50,26 @@ Template.adminListCities.events({
  * Routines for admin/listCouncils.html
  */
 Template.adminListCouncils.helpers({
-councils: function () {
-	//return Councils.find({'city_id': city_id}, {sort: {'timeframe.start': 1}});
-	return Councils.find({}, {sort: {'city_id': 1, 'timeframe.start': 1}});
-},
+	councils: function () {
+		//return Councils.find({'city_id': city_id}, {sort: {'timeframe.start': 1}});
+		return Councils.find({}, {
+			sort: {
+				'city_id': 1,
+				'timeframe.start': 1,
+				'name': 1
+			}
+		});
+	},
 
-council_city: function (city_id) {
-	return Cities.findOne({_id: city_id}).name;
-}
+	council_city: function (city_id) {
+		return Cities.findOne({_id: city_id}).name;
+	}
+});
+
+Template.adminListCouncils.events({
+	'click .toggle-hidden': function (event) {
+		Meteor.call('hideEntity', 'council', this._id, !this.hidden)
+	}
 });
 
 

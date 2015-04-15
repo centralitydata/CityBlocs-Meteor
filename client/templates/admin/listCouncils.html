@@ -15,8 +15,8 @@
 				<tr>
 					<td>{{council_city city_id}}</td>
 					<td><a href="/admin/editCouncil/{{_id}}">{{name}}</a></td>
-					<td>{{timeframe.start}}</td>
-					<td>{{timeframe.finish}}</td>
+					<td>{{timeframe.start.toDateString}}</td>
+					<td>{{timeframe.finish.toDateString}}</td>
 					<td class="text-center">{{motions.length}}</td>
 					<td class="text-center"><input type="checkbox"
 							checked="{{hidden}}" class="toggle-hidden"></td>

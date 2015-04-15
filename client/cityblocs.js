@@ -52,6 +52,10 @@ Template.cityMenu.helpers({
 Template.councilMenu.helpers({
 	councils: function (city_id) {
 		return Councils.find({'city_id': city_id}, {sort: {'timeframe.start': 1}});
+	},
+
+	classIfHidden: function () {
+		return this.hidden ? 'city-hidden' : '';
 	}
 });
 

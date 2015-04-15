@@ -37,7 +37,7 @@ body {
 }
 
 
-li.city-hidden {
+li .city-hidden {
   background-color: #ecc;
   color: #b88;
   border: 1px #f88 dashed;
