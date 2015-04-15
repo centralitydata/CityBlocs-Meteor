@@ -2,7 +2,7 @@
  * Routines for admin/editAbout.html
  */
 
-Template.admin_editAbout.events({
+Template.adminEditAbout.events({
 	'submit #editAboutPage': function (e) {
 		var aboutInfo = {
 			heading: e.target['about-heading'].value,
@@ -14,7 +14,7 @@ Template.admin_editAbout.events({
 	}
 });
 
-Template.admin_editAbout.helpers({
+Template.adminEditAbout.helpers({
 	about_texts: function () {
 		return AboutInfo.findOne();
 	}
@@ -25,13 +25,17 @@ Template.admin_editAbout.helpers({
  * Routines for admin/listCities.html, shown in main admin/index.html page
  */
 
-Template.admin_listCities.helpers({
+Template.adminListCities.helpers({
 	cities: function () {
 		return Cities.find({}, {sort: {name: 1}});
+	},
+
+	num_councils: function (city_id) {
+		return Councils.find({'city_id': city_id}).count();
 	}
 });
 
-Template.admin_listCities.events({
+Template.adminListCities.events({
 	'click .toggle-hidden': function (event) {
 		// Logically invert the hidden property
 		Meteor.call('hideCity', this._id, !this.hidden);
@@ -43,17 +47,24 @@ Template.admin_listCities.events({
 
 
 /***************************************************************************
- * Routines for admin/editCity.html
+ * Routines for admin/listCouncils.html
  */
-
 Template.adminListCouncils.helpers({
-	councils: function (city_id) {
-		//return Councils.find({'city_id': city_id}, {sort: {'timeframe.start': 1}});
-		return Councils.find({'city_id': city_id});
-	}
+councils: function () {
+	//return Councils.find({'city_id': city_id}, {sort: {'timeframe.start': 1}});
+	return Councils.find({}, {sort: {'city_id': 1, 'timeframe.start': 1}});
+},
+
+council_city: function (city_id) {
+	return Cities.findOne({_id: city_id}).name;
+}
 });
 
-Template.admin_editCity.events({
+
+/***************************************************************************
+ * Routines for admin/editCity.html
+ */
+Template.adminEditCity.events({
 	'submit .edit-city': function (event) {
 		event.preventDefault();
 
@@ -84,5 +95,21 @@ Template.admin_editCity.events({
 
 			Router.go('/admin');
 		}
+	},
+
+	'click .return-admin': function (event) {
+		event.preventDefault();
+		Router.go('/admin');
+	}
+});
+
+
+/***************************************************************************
+ * Routines for admin/editCouncil.html
+ */
+Template.adminEditCouncil.events({
+	'click .return-admin': function (event) {
+		event.preventDefault();
+		Router.go('/admin');
 	}
 });
