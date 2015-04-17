@@ -23,6 +23,14 @@ Template.registerHelper('AppName', 'CityBlocs');
  * App-level components
  */
 
+Template.registerHelper('cities', function () {
+	return Cities.find({}, {sort: {name: 1}});
+});
+
+Template.registerHelper('formatDate', function (datetime, format) {
+	return moment(datetime).format(format);
+});
+
 Template.registerHelper('classIfActive', function (name, class_name) {
 	var ret = {};
 
@@ -37,10 +45,6 @@ Template.registerHelper('classIfActive', function (name, class_name) {
 Template.registerHelper('selectList', function (id1, id2) {
 	console.log('comparing "' + id1 + '" to "' + id2 + '"');
 	return id1===id2 ? {selected: 'selected'} : '';
-});
-
-Template.registerHelper('cities', function () {
-	return Cities.find({}, {sort: {name: 1}});
 });
 
 
