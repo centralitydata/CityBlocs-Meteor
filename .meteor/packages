@@ -10,3 +10,4 @@ twbs:bootstrap
 accounts-password
 accounts-ui
 markdown
+momentjs:moment
