@@ -34,16 +34,21 @@ Template.registerHelper('classIfActive', function (name, class_name) {
 	return ret;
 });
 
+Template.registerHelper('selectList', function (id1, id2) {
+	console.log('comparing "' + id1 + '" to "' + id2 + '"');
+	return id1===id2 ? {selected: 'selected'} : '';
+});
+
+Template.registerHelper('cities', function () {
+	return Cities.find({}, {sort: {name: 1}});
+});
+
 
 /***************************************************************************
  * Nav bar components
  */
 
 Template.cityMenu.helpers({
-	cities: function () {
-		return Cities.find({}, {sort: {name: 1}});
-	},
-
 	classIfHidden: function () {
 		return this.hidden ? 'city-hidden' : '';
 	}

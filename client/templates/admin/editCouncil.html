@@ -8,20 +8,30 @@
 				  New council
 				{{/if}}
 			</h1>
-			<form class="edit-city form-horizontal">
+			<form class="edit-council form-horizontal">
 				<div class="form-group">
-					<label class="col-sm-2 control-label" for="city_name">Name:</label>
+					<label class="col-sm-2 control-label" for="council_name">Name:</label>
 					<div class="col-sm-6">
-						<input type="text" class="form-control" id="city_name" required
+						<input type="text" class="form-control" id="council_name" required
 							value="{{name}}">
 					</div>
 					<div class="col-sm-3">
 						<div class="checkbox">
 							<label>
-								<input type="checkbox" name="city_hidden" checked="{{hidden}}">
+								<input type="checkbox" name="council_hidden" checked="{{hidden}}">
 								Hidden
 							</label>
 						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label" for="city_list">City:</label>
+					<div class="col-sm-6">
+						<select class="form-control" name="city_list">
+							{{#each cities}}
+						    <option value="{{_id}}" {{selectList _id ../city_id}}>{{name}}</option>
+						  {{/each}}
+						</select>
 					</div>
 				</div>
 				<div class="form-group">
@@ -32,7 +42,7 @@
 							{{else}}
 								Create new council
 							{{/if}}
-							</button>
+						</button>
 						<button class="btn btn-default return-admin">Cancel</button>
 					</div>
 				</div>

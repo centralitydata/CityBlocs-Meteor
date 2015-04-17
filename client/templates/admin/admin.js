@@ -47,33 +47,6 @@ Template.adminListCities.events({
 
 
 /***************************************************************************
- * Routines for admin/listCouncils.html
- */
-Template.adminListCouncils.helpers({
-	councils: function () {
-		//return Councils.find({'city_id': city_id}, {sort: {'timeframe.start': 1}});
-		return Councils.find({}, {
-			sort: {
-				'city_id': 1,
-				'timeframe.start': 1,
-				'name': 1
-			}
-		});
-	},
-
-	council_city: function (city_id) {
-		return Cities.findOne({_id: city_id}).name;
-	}
-});
-
-Template.adminListCouncils.events({
-	'click .toggle-hidden': function (event) {
-		Meteor.call('hideEntity', 'council', this._id, !this.hidden)
-	}
-});
-
-
-/***************************************************************************
  * Routines for admin/editCity.html
  */
 Template.adminEditCity.events({
@@ -99,8 +72,7 @@ Template.adminEditCity.events({
 				// There is no existing ID, so insert a new document
 				var city = {
 					name: name,
-					hidden: hidden,
-					councils: []
+					hidden: hidden
 				};
 				Meteor.call('insertCity', city);
 			}
@@ -117,9 +89,73 @@ Template.adminEditCity.events({
 
 
 /***************************************************************************
+ * Routines for admin/listCouncils.html
+ */
+Template.adminListCouncils.helpers({
+	councils: function () {
+		//return Councils.find({'city_id': city_id}, {sort: {'timeframe.start': 1}});
+		return Councils.find({}, {
+			sort: {
+				'city_id': 1,
+				'timeframe.start': 1,
+				'name': 1
+			}
+		});
+	},
+
+	council_city: function (city_id) {
+		return Cities.findOne({_id: city_id}).name;
+	}
+});
+
+Template.adminListCouncils.events({
+	'click .toggle-hidden': function (event) {
+		Meteor.call('hideEntity', 'council', this._id, !this.hidden);
+	},
+	'click .new-council': function (event) {
+		Router.go('/admin/editCouncil');
+	}
+});
+
+
+/***************************************************************************
  * Routines for admin/editCouncil.html
  */
 Template.adminEditCouncil.events({
+	'submit .edit-council': function (event) {
+		event.preventDefault();
+
+		var nameTextbox = event.target.council_name;
+		var name = nameTextbox.value.trim();
+		var hidden = event.target.council_hidden.checked;
+		var city_id = event.target.city_list.value;
+
+		if (name === '') {
+			$(nameTextbox).val(name);
+			$(nameTextbox).parent().addClass('has-error');
+		} else {
+			if (this._id) {
+				// There is an existing ID, so update the current document
+				var updates = {
+					name: name,
+					city_id: city_id,
+					hidden: hidden
+				};
+				Meteor.call('updateCouncil', this._id, updates);
+			} else {
+				// There is no existing ID, so insert a new document
+				var city = {
+					name: name,
+					city_id: city_id,
+					hidden: hidden
+				};
+				Meteor.call('insertCouncil', city);
+			}
+
+			Router.go('/admin');
+		}
+	},
+
 	'click .return-admin': function (event) {
 		event.preventDefault();
 		Router.go('/admin');
