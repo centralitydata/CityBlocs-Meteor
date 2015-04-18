@@ -70,6 +70,13 @@ Template.adminEditCity.events({
 		var nameTextbox = event.target.city_name;
 		var name = nameTextbox.value.trim();
 		var hidden = event.target.city_hidden.checked;
+		var councillors = Session.get('localCouncillors');
+		// Councillors can be deleted by removing their names, which is
+		// accomplished here by removing elements from the locally stored array
+		// of councillors if they are blank.
+		councillors = _.filter(councillors, function (c) {
+			return c.trim() !== '';
+		});
 
 		if (name === '') {
 			$(nameTextbox).val(name);
@@ -79,7 +86,8 @@ Template.adminEditCity.events({
 				// There is an existing ID, so update the current document
 				var updates = {
 					name: name,
-					hidden: hidden
+					hidden: hidden,
+					councillors: councillors
 				};
 				Meteor.call('updateCity', this._id, updates);
 			} else {
@@ -102,12 +110,23 @@ Template.adminEditCity.events({
 
 	'click #new-councillor': function (event) {
 		event.preventDefault();
-		
+
 		// Retrieve the current set of locally stored councillors
 		var councillors = Session.get('localCouncillors');
 		// Add a nameless new councillor
 		councillors.push('');
-		// Update the stored value
+		// Update the stored values
+		Session.set('localCouncillors', councillors);
+	},
+
+	'blur .councillor-name': function (event) {
+		// Get the index of the councillor that was just potentially edited
+		var idx = event.target.attributes['data-index'].value;
+		// Retrieve the current set of locally stored councillors
+		var councillors = Session.get('localCouncillors');
+		// Save the current value of the potentially edited councillor
+		councillors[idx] = event.target.value;
+		// Update the stored values
 		Session.set('localCouncillors', councillors);
 	}
 });
