@@ -47,6 +47,17 @@ Template.registerHelper('selectList', function (id1, id2) {
 	return id1===id2 ? {selected: 'selected'} : '';
 });
 
+/*
+ * Convert a bare array into an array of objects containing
+ * the elements of the array and their respective indices,
+ * i.e. [a, b, ...] -> [{index: 0, value: a}, {index: 1, value: b}, ...]
+ */
+Template.registerHelper('arrayWithIndex', function (array) {
+	return _.map(array, function (val, idx) {
+		return {index: idx, value: val};
+	});
+});
+
 
 /***************************************************************************
  * Nav bar components
