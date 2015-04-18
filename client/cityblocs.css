@@ -44,6 +44,9 @@ li .city-hidden {
 }
 
 
+div.bs-docs-section {
+  margin-bottom: 75px;
+}
 
 
 .navbar-inverse .navbar-nav > li > a.active-nav  {

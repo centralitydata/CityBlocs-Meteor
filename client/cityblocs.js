@@ -43,7 +43,6 @@ Template.registerHelper('classIfActive', function (name, class_name) {
 });
 
 Template.registerHelper('selectList', function (id1, id2) {
-	console.log('comparing "' + id1 + '" to "' + id2 + '"');
 	return id1===id2 ? {selected: 'selected'} : '';
 });
 
