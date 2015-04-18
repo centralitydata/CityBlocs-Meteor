@@ -46,6 +46,24 @@
 								value="{{formatDate timeframe.finish 'YYYY-MM-DD'}}">
 					</div>
 				</div>
+				<div class="row">
+					<div class="col-sm-offset-2 col-sm-6">
+						<h2>Councillors</h2>
+						<hr>
+						{{#each arrayWithIndex localCouncillors}}
+						  <div class="form-group">
+								<div class="col-sm-12">
+									<input type="text" class="form-control councillor-name"
+									    value="{{value}}" data-index="{{index}}">
+								</div>
+							</div>
+						{{/each}}
+						<button class="btn btn-default" id="new-councillor">
+							<span class="glyphicon glyphicon-plus"></span> Councillor
+						</button>
+						<hr>
+					</div>
+				</div>
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
 						<button type="submit" class="btn btn-primary">

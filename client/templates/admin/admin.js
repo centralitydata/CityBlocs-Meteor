@@ -49,20 +49,6 @@ Template.adminListCities.events({
 /***************************************************************************
  * Routines for admin/editCity.html
  */
-Template.adminEditCity.onCreated(function () {
-	// Clear any previous locally storeed councillors
-	Session.set('localCouncillors');
-});
-
-Template.adminEditCity.helpers({
-	localCouncillors: function () {
-		if (!Session.get('localCouncillors')) {
-			Session.set('localCouncillors', this.councillors || []);
-		}
-		return Session.get('localCouncillors');
-	}
-});
-
 Template.adminEditCity.events({
 	'submit .edit-city': function (event) {
 		event.preventDefault();
@@ -70,13 +56,6 @@ Template.adminEditCity.events({
 		var nameTextbox = event.target.city_name;
 		var name = nameTextbox.value.trim();
 		var hidden = event.target.city_hidden.checked;
-		var councillors = Session.get('localCouncillors');
-		// Councillors can be deleted by removing their names, which is
-		// accomplished here by removing elements from the locally stored array
-		// of councillors if they are blank.
-		councillors = _.filter(councillors, function (c) {
-			return c.trim() !== '';
-		});
 
 		if (name === '') {
 			$(nameTextbox).val(name);
@@ -106,28 +85,6 @@ Template.adminEditCity.events({
 	'click .return-admin': function (event) {
 		event.preventDefault();
 		Router.go('/admin');
-	},
-
-	'click #new-councillor': function (event) {
-		event.preventDefault();
-
-		// Retrieve the current set of locally stored councillors
-		var councillors = Session.get('localCouncillors');
-		// Add a nameless new councillor
-		councillors.push('');
-		// Update the stored values
-		Session.set('localCouncillors', councillors);
-	},
-
-	'blur .councillor-name': function (event) {
-		// Get the index of the councillor that was just potentially edited
-		var idx = event.target.attributes['data-index'].value;
-		// Retrieve the current set of locally stored councillors
-		var councillors = Session.get('localCouncillors');
-		// Save the current value of the potentially edited councillor
-		councillors[idx] = event.target.value;
-		// Update the stored values
-		Session.set('localCouncillors', councillors);
 	}
 });
 
@@ -165,6 +122,20 @@ Template.adminListCouncils.events({
 /***************************************************************************
  * Routines for admin/editCouncil.html
  */
+Template.adminEditCouncil.onCreated(function () {
+	// Clear any previous locally storeed councillors
+	Session.set('localCouncillors');
+});
+
+Template.adminEditCouncil.helpers({
+	localCouncillors: function () {
+		if (!Session.get('localCouncillors')) {
+			Session.set('localCouncillors', this.councillors || []);
+		}
+		return Session.get('localCouncillors');
+	}
+});
+
 Template.adminEditCouncil.events({
 	'submit .edit-council': function (event) {
 		event.preventDefault();
@@ -173,6 +144,13 @@ Template.adminEditCouncil.events({
 		var name = nameTextbox.value.trim();
 		var hidden = event.target.council_hidden.checked;
 		var city_id = event.target.city_list.value;
+		var councillors = Session.get('localCouncillors');
+		// Councillors can be deleted by removing their names, which is
+		// accomplished here by removing elements from the locally stored array
+		// of councillors if they are blank.
+		councillors = _.filter(councillors, function (c) {
+			return c.trim() !== '';
+		});
 
 		if (name === '') {
 			$(nameTextbox).val(name);
@@ -183,7 +161,8 @@ Template.adminEditCouncil.events({
 				var updates = {
 					name: name,
 					city_id: city_id,
-					hidden: hidden
+					hidden: hidden,
+					councillors: councillors
 				};
 				Meteor.call('updateCouncil', this._id, updates);
 			} else {
@@ -203,5 +182,27 @@ Template.adminEditCouncil.events({
 	'click .return-admin': function (event) {
 		event.preventDefault();
 		Router.go('/admin');
+	},
+
+	'click #new-councillor': function (event) {
+		event.preventDefault();
+
+		// Retrieve the current set of locally stored councillors
+		var councillors = Session.get('localCouncillors');
+		// Add a nameless new councillor
+		councillors.push('');
+		// Update the stored values
+		Session.set('localCouncillors', councillors);
+	},
+
+	'blur .councillor-name': function (event) {
+		// Get the index of the councillor that was just potentially edited
+		var idx = event.target.attributes['data-index'].value;
+		// Retrieve the current set of locally stored councillors
+		var councillors = Session.get('localCouncillors');
+		// Save the current value of the potentially edited councillor
+		councillors[idx] = event.target.value;
+		// Update the stored values
+		Session.set('localCouncillors', councillors);
 	}
 });
