@@ -24,3 +24,7 @@ Meteor.publish('motions', function () {
 Meteor.publish('about_info', function () {
 	return AboutInfo.find();
 });
+
+Meteor.publish('contact_info', function () {
+	return ContactInfo.find();
+});

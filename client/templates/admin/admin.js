@@ -22,6 +22,33 @@ Template.adminEditAbout.helpers({
 
 
 /***************************************************************************
+ * Routines for admin/editAbout.html
+ */
+
+Template.adminEditContact.events({
+	'submit #editContactPage': function (e) {
+		var contactInfo = {
+			heading: e.target['contact-heading'].value,
+			description: e.target['contact-description'].value,
+			creators: {
+				heading: e.target['contact-creators-heading'].value,
+				description: e.target['contact-creators-description'].value
+			}
+		};
+
+		Meteor.call('editContactInfo', contactInfo);
+	}
+});
+
+Template.adminEditContact.helpers({
+	contact_elements: function () {
+		return ContactInfo.findOne();
+	}
+});
+
+
+
+/***************************************************************************
  * Routines for admin/listCities.html, shown in main admin/index.html page
  */
 

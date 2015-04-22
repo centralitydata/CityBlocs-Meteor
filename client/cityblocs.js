@@ -6,6 +6,7 @@ Meteor.subscribe('cities');
 Meteor.subscribe('councils');
 Meteor.subscribe('motions');
 Meteor.subscribe('about_info');
+Meteor.subscribe('contact_info');
 
 Accounts.ui.config({
 	passwordSignupFields: 'USERNAME_AND_EMAIL'
@@ -84,6 +85,11 @@ Template.about.helpers({
 	}
 });
 
+Template.contact.helpers({
+	contact_elements: function () {
+		return ContactInfo.findOne();
+	}
+});
 
 /***************************************************************************
  * Additional routines

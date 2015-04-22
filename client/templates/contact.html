@@ -1,0 +1,27 @@
+<template name="contact">
+	<head>
+	  <title>{{AppName}} - Contact</title>
+	</head>
+
+	<div class="container">
+		<div class="row">
+
+			<h1>{{#markdown}}{{contact_elements.heading}}{{/markdown}}</h1>
+
+			{{#markdown}}{{contact_elements.description}}{{/markdown}}
+
+			<h1>{{#markdown}}{{contact_elements.creators.heading}}{{/markdown}}</h1>
+
+			<div class="col-sm-8">
+				Graph goes here
+			</div>
+
+			<div class="col-sm-4">
+				<div class="textpanel buffer">
+					{{#markdown}}{{contact_elements.creators.description}}{{/markdown}}
+				</div>
+			</div>
+
+		</div>
+	</div>
+</template>

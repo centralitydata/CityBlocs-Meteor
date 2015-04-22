@@ -1,0 +1,47 @@
+<template name="adminEditContact">
+	{{#adminSectionWrapper title="&ldquo;Contact&rdquo;-page contents"}}
+		<form id="editContactPage">
+			<div class="form-group">
+				<label for="contact-heading">Heading</label>
+				<input id="contact-heading"
+						type="text"
+						class="form-control"
+						placeholder="Contact us"
+						value="{{contact_elements.heading}}">
+			</div>
+			<div class="form-group">
+				<label for="contact-description">Main contact text / description</label>
+				<textarea id="contact-description"
+						rows="11"
+						class="form-control"
+						placeholder="Our email address is ..."
+						value="{{contact_elements.description}}"></textarea>
+			</div>
+			<div class="form-group">
+				<label for="contact-creators-heading">
+					&ldquo;Creators&rdquo; heading
+				</label>
+				<input id="contact-creators-heading"
+						type="text"
+						class="form-control"
+						placeholder="Who are we?"
+						value="{{contact_elements.creators.heading}}">
+			</div>
+			<div class="form-group">
+				<label for="contact-creators-heading">
+					&ldquo;Creators&rdquo; heading
+				</label>
+				<textarea id="contact-creators-description"
+						rows="11"
+						class="form-control"
+						placeholder="I am me."
+						value="{{contact_elements.creators.description}}"></textarea>
+			</div>
+			<div class="form-group text-center">
+				<button type="submit" class="btn btn-primary text-center">
+					Update Contact page
+				</button>
+			</div>
+		</form>
+	{{/adminSectionWrapper}}
+</template>
