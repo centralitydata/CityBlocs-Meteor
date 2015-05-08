@@ -91,6 +91,17 @@ Template.contact.helpers({
 	}
 });
 
+
+/***************************************************************************
+ * Contact page functions
+ */
+
+Template.contact.rendered = function () {
+	Meteor.cityblocs_functions.draw_about_graph('#svg-about');
+};
+
+
+
 /***************************************************************************
  * Additional routines
  */
